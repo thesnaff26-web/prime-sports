@@ -305,6 +305,7 @@
       "date": "2026-10-15T00:30:00Z",
       "edge": 0.101,
       "event_id": "2026020107",
+      "final_score": "2 : 3",
       "forecast_message_id": 43,
       "forecast_published_at": "2026-10-13T00:40:25.539724+00:00",
       "home": "Колорадо Эвеланш",
@@ -313,9 +314,11 @@
       "pick": "Колорадо Эвеланш",
       "pick_id": "COL",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
+      "result_published_at": "2026-10-15T06:15:36.802003+00:00",
+      "settled_at": "2026-10-15T06:15:36.802019+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020108": {
       "away": "Баффало Сейбрз",
