@@ -370,6 +370,12 @@ def checkpoint_state(state):
 
 
 def export_prime(state):
+    for p in state['predictions'].values():
+        if p.get('sport') == 'NHL' and p.get('pick') and not p.get('market_type'):
+            p['market_type'] = 'winner'
+            p['market_label'] = 'Победа ' + p['pick'] + ' (включая ОТ и буллиты)'
+        p.setdefault('probability', None)
+        p.setdefault('totals', [])
     feed = {
         'updated_at': dt.datetime.now(UTC).isoformat(),
         'predictions': sorted(state['predictions'].values(),
@@ -491,7 +497,9 @@ def main():
                               'pick': g['home'] if chosen_home else g['away'],
                               'pick_id': g['home_id'] if chosen_home else g['away_id'],
                               'edge': round(abs(edge), 3), 'home_rate': g['home_rate'],
-                              'away_rate': g['away_rate'], 'status': 'pending', 'result': None})
+                              'away_rate': g['away_rate'], 'status': 'pending', 'result': None,
+                              'market_type': 'winner', 'market_label': 'Победа '+(g['home'] if chosen_home else g['away'])+' (включая ОТ и буллиты)',
+                              'probability': None, 'totals': []})
     print('=== ICE EDGE selection diagnostics ===')
     print(f"Unique games reviewed: {diagnostics['unique_games']}")
     for reason in ('not_upcoming', 'missing_team_form', 'outside_48h_window',
