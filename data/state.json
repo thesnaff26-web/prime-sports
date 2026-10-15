@@ -499,6 +499,24 @@
       "result": null,
       "sport": "NHL",
       "status": "pending"
+    },
+    "NHL:2026020119": {
+      "away": "Питтсбург Пингвинз",
+      "away_rate": 0.5,
+      "date": "2026-10-17T01:00:00Z",
+      "edge": 0.136,
+      "event_id": "2026020119",
+      "forecast_published_at": "2026-10-15T06:15:37.987220+00:00",
+      "home": "Колорадо Эвеланш",
+      "home_rate": 0.5909090909090909,
+      "id": "NHL:2026020119",
+      "pick": "Колорадо Эвеланш",
+      "pick_id": "COL",
+      "publication_channel": "prime",
+      "publication_verified": true,
+      "result": null,
+      "sport": "NHL",
+      "status": "pending"
     }
   },
   "statistics_published_revision": "legacy_four_wins_verified_2026-10-12",
