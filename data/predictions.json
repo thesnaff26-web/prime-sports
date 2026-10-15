@@ -1,6 +1,24 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-10-15T06:15:39.245546+00:00",
   "predictions": [
+    {
+      "id": "NHL:2026020119",
+      "event_id": "2026020119",
+      "sport": "NHL",
+      "date": "2026-10-17T01:00:00Z",
+      "home": "Колорадо Эвеланш",
+      "away": "Питтсбург Пингвинз",
+      "pick": "Колорадо Эвеланш",
+      "pick_id": "COL",
+      "edge": 0.136,
+      "home_rate": 0.5909090909090909,
+      "away_rate": 0.5,
+      "status": "pending",
+      "result": null,
+      "publication_verified": true,
+      "forecast_published_at": "2026-10-15T06:15:37.987220+00:00",
+      "publication_channel": "prime"
+    },
     {
       "away": "Калгари Флэймз",
       "away_rate": 0.2222222222222222,
@@ -195,9 +213,12 @@
       "pick": "Колорадо Эвеланш",
       "pick_id": "COL",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled",
+      "result_published_at": "2026-10-15T06:15:36.802003+00:00",
+      "final_score": "2 : 3",
+      "settled_at": "2026-10-15T06:15:36.802019+00:00"
     },
     {
       "away": "Монреаль Канадиенс",
@@ -213,9 +234,12 @@
       "pick": "Вашингтон Кэпиталз",
       "pick_id": "WSH",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled",
+      "result_published_at": "2026-10-15T06:15:35.589046+00:00",
+      "final_score": "5 : 4",
+      "settled_at": "2026-10-15T06:15:35.589056+00:00"
     },
     {
       "away": "Калгари Флэймз",
