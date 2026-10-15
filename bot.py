@@ -527,7 +527,18 @@ def main():
         previous, current = history(fetch, today)
         approved, metrics = validate(previous, current)
         added = enrich(state['predictions'], previous, current, approved)
-        print(f'Totals model 1.5: previous={len(previous)}, current={len(current)}, validated_lines={approved}, metrics={metrics}, published={added}')
+        # Select one highest estimated probability among historically validated
+        # totals per game. The winner model has no calibrated probability, so
+        # do not falsely compare its edge score with a probability.
+        for pred in state['predictions'].values():
+            options = pred.get('totals') or []
+            if pred.get('status') != 'pending' or not options:
+                continue
+            best = max(options, key=lambda x: x.get('probability', 0))
+            pred['best_validated_total'] = best
+            pred['selection_note'] = ('Лучший из прошедших историческую проверку тоталов; '
+                                      'не сравнивается с вероятностью победы команды')
+        print(f'Totals model 1.6: previous={len(previous)}, current={len(current)}, validated_lines={approved}, metrics={metrics}, published={added}')
     except Exception as exc:
         print('WARNING: Totals model unavailable:', exc)
     save(state)

@@ -3,7 +3,7 @@ import datetime as dt
 import math
 from collections import defaultdict
 
-LINES = (4.5, 5.5, 6.5)
+LINES = (3.5, 4.5, 5.5, 6.5, 7.5)
 
 def over_probability(lam, line):
     term = math.exp(-lam)
@@ -110,9 +110,9 @@ def enrich(predictions, previous, current, lines):
         for line in lines:
             over=over_probability(lam,line)
             side,prob=('over',over) if over>=.5 else ('under',1-over)
-            if prob<.62:continue
+            if prob<.65:continue
             p.setdefault('totals',[]).append({'market_type':'total','total_line':line,'total_side':side,
                 'market_label':('Тотал больше ' if side=='over' else 'Тотал меньше ')+str(line).replace('.',','),
-                'probability':round(prob,3),'probability_method':'poisson_v15_research_validated'})
+                'probability':round(prob,3),'probability_method':'poisson_v16_research_validated'})
             count+=1
     return count
