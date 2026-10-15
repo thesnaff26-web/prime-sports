@@ -284,6 +284,7 @@
       "date": "2026-10-14T23:30:00Z",
       "edge": 0.101,
       "event_id": "2026020106",
+      "final_score": "5 : 4",
       "forecast_message_id": 42,
       "forecast_published_at": "2026-10-13T00:40:21.087304+00:00",
       "home": "Вашингтон Кэпиталз",
@@ -292,9 +293,11 @@
       "pick": "Вашингтон Кэпиталз",
       "pick_id": "WSH",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
+      "result_published_at": "2026-10-15T06:15:35.589046+00:00",
+      "settled_at": "2026-10-15T06:15:35.589056+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020107": {
       "away": "Даллас Старз",
