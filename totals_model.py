@@ -38,68 +38,61 @@ def _fetch_range(fetch, first, last, label):
     return sorted(seen.values(), key=lambda g:g['date'])
 
 def history(fetch, today):
-    current = _season_start(today)
-    # Last ~100 regular-season days of the preceding season; avoid playoffs.
-    previous = current.replace(year=current.year-1)
-    previous_end = dt.date(previous.year+1, 4, 18)
-    prev = _fetch_range(fetch, previous_end-dt.timedelta(days=100), previous_end, 'previous')
-    recent = _fetch_range(fetch, max(current, today-dt.timedelta(days=70)), today, 'current')
-    return prev, recent
+    start = _season_start(today)
+    current = _fetch_range(fetch, start, today, 'current')
+    return [], current
 
 def estimate(previous, current, home, away):
-    if len(previous) < 100: return None
-    # Regular-season home/away attack and defense; shrink toward league averages.
-    # Previous-season observations carry reduced weight, current season takes priority.
-    stats = defaultdict(lambda: [0.,0.,0.,0.])
-    total_goals = 0.
-    total_weight = 0.
-    for weight, games in ((0.4, previous), (1., current)):
-        for g in games:
-            h,a = g['home'],g['away']
-            hs,aws = g['hs'],g['aws']
-            for team, scored, conceded in ((h,hs,aws),(a,aws,hs)):
-                s=stats[team]
-                s[0]+=weight*scored;s[1]+=weight*conceded;s[2]+=weight
-                if team==h:s[3]+=weight
-            total_goals+=weight*(hs+aws)
-            total_weight+=weight
-    if total_weight<=0:return None
-    league_goals=total_goals/(2*total_weight)
-    # No team-specific estimates without at least some observations.
-    if stats[home][2]<2 or stats[away][2]<2:return None
+    # Strictly current-season data; prior season is intentionally ignored.
+    stats = defaultdict(lambda: [0., 0., 0])
+    goals = 0
+    for g in current:
+        hs, aws = g['hs'], g['aws']
+        for team, scored, conceded in ((g['home'], hs, aws), (g['away'], aws, hs)):
+            row = stats[team]
+            row[0] += scored
+            row[1] += conceded
+            row[2] += 1
+        goals += hs + aws
+    if not current or stats[home][2] < 5 or stats[away][2] < 5:
+        return None
+    league_avg = goals / (2 * len(current))
     def rates(team):
-        gf,ga,n,_=stats[team]
-        prior=12.
-        return ((gf+prior*league_goals)/(n+prior),
-                (ga+prior*league_goals)/(n+prior))
-    hf,ha=rates(home);af,aa=rates(away)
-    home_adv=0.13  # small fixed adjustment, not an estimated advantage
-    lam=(hf+aa)/2+(af+ha)/2
-    return max(3.,min(8.5,lam+home_adv))
+        gf, ga, n = stats[team]
+        prior = 12
+        return ((gf + prior * league_avg) / (n + prior),
+                (ga + prior * league_avg) / (n + prior))
+    hf, ha = rates(home)
+    af, aa = rates(away)
+    lam = (hf + aa + af + ha) / 2
+    return max(3., min(8.5, lam))
 
 def validate(previous, current):
-    # Strict chronological out-of-sample evaluation; no current test game in training.
-    if len(previous)<100 or len(current)<60:
-        return [], {'reason':'insufficient_samples', 'previous':len(previous),'current':len(current)}
-    start=max(30,len(current)//2)
-    tested=[]
-    for i in range(start,len(current)):
-        g=current[i]
-        lam=estimate(previous,current[:i],g['home'],g['away'])
-        if lam is not None:tested.append((lam,g['hs']+g['aws']))
-    if len(tested)<30:
-        return [], {'reason':'insufficient_test_games','tested':len(tested)}
-    accepted=[]; metrics={}
+    # Walk-forward testing on CURRENT season only, no test-game leakage.
+    # Conservative minimum to avoid advertising unstable early-season results.
+    if len(current) < 180:
+        return [], {'reason': 'insufficient_current_season_games', 'current': len(current), 'required': 180}
+    start = max(80, len(current) // 2)
+    tested = []
+    for i in range(start, len(current)):
+        game = current[i]
+        lam = estimate([], current[:i], game['home'], game['away'])
+        if lam is None:
+            continue
+        baseline_train = current[:i]
+        tested.append((lam, game['hs'] + game['aws'], baseline_train))
+    if len(tested) < 80:
+        return [], {'reason': 'insufficient_out_of_sample_games', 'tested': len(tested), 'required': 80}
+    approved, metrics = [], {}
     for line in LINES:
-        # Baseline uses only previous season and training portion of current season.
-        train=previous+current[:start]
-        baseline=sum(g['hs']+g['aws']>line for g in train)/len(train)
-        brier=sum((over_probability(lam,line)-int(total>line))**2 for lam,total in tested)/len(tested)
-        base=sum((baseline-int(total>line))**2 for _,total in tested)/len(tested)
-        metrics[str(line)]={'brier':round(brier,4),'baseline_brier':round(base,4),'tested':len(tested)}
-        # Require measurable improvement, not a rounding tie.
-        if brier+0.005<base:accepted.append(line)
-    return accepted, metrics
+        brier = sum((over_probability(lam, line) - int(total > line))**2
+                    for lam, total, train in tested) / len(tested)
+        baseline = sum(((sum(g['hs'] + g['aws'] > line for g in train) / len(train)) - int(total > line))**2
+                       for lam, total, train in tested) / len(tested)
+        metrics[str(line)] = {'brier': round(brier, 4), 'baseline_brier': round(baseline, 4), 'tested': len(tested)}
+        if brier + 0.01 < baseline:
+            approved.append(line)
+    return approved, metrics
 
 def enrich(predictions, previous, current, lines):
     count=0
@@ -113,6 +106,6 @@ def enrich(predictions, previous, current, lines):
             if prob<.65:continue
             p.setdefault('totals',[]).append({'market_type':'total','total_line':line,'total_side':side,
                 'market_label':('Тотал больше ' if side=='over' else 'Тотал меньше ')+str(line).replace('.',','),
-                'probability':round(prob,3),'probability_method':'poisson_v16_research_validated'})
+                'probability':round(prob,3),'probability_method':'poisson_v17_current_season_walkforward'})
             count+=1
     return count

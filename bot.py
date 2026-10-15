@@ -538,7 +538,7 @@ def main():
             pred['best_validated_total'] = best
             pred['selection_note'] = ('Лучший из прошедших историческую проверку тоталов; '
                                       'не сравнивается с вероятностью победы команды')
-        print(f'Totals model 1.6: previous={len(previous)}, current={len(current)}, validated_lines={approved}, metrics={metrics}, published={added}')
+        print(f'Totals model 1.7: previous={len(previous)}, current={len(current)}, validated_lines={approved}, metrics={metrics}, published={added}')
     except Exception as exc:
         print('WARNING: Totals model unavailable:', exc)
     save(state)
