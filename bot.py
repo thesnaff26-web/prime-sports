@@ -2,6 +2,7 @@
 """ICE EDGE: NHL photo forecasts with auditable Telegram publication records."""
 import datetime as dt
 from collections import Counter
+from totals_model import history, validated_lines, enrich
 import json
 import os
 import pathlib
@@ -522,6 +523,13 @@ def main():
         state['predictions'][p['id']] = p
         checkpoint_state(state)
         new_count += 1
+    try:
+        completed = history(fetch, today)
+        approved = validated_lines(completed)
+        added = enrich(state['predictions'], completed, approved)
+        print(f'Totals model: historical_games={len(completed)}, validated_lines={approved}, published={added}')
+    except Exception as exc:
+        print('WARNING: Totals model unavailable:', exc)
     save(state)
     export_prime(state)
     print(f'Window: next {FORECAST_HOURS}h. Candidates: {len(proposals)}')
