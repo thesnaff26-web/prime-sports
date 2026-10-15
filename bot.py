@@ -3,6 +3,7 @@
 import datetime as dt
 from collections import Counter
 from totals_model import history, validate, enrich
+from winner_model import validate as validate_winners, pick as winner_pick, MIN_CONFIDENCE
 import json
 import os
 import pathlib
@@ -513,7 +514,38 @@ def main():
     if diagnostics['eligible'] == 0:
         print('INFO: No new forecasts qualify under the current rules; nothing will be posted')
     proposals.sort(key=lambda p: p['edge'], reverse=True)
-    selected = proposals  # Publish every match that passes the existing quality filter.
+    # PRIME 1.8: old edge proposals are SHADOW candidates only, never published.
+    # Validate winner model on completed CURRENT-season games first.
+    selected = []
+    winner_history = []
+    winner_approved = False
+    winner_metrics = {'reason': 'history_unavailable'}
+    try:
+        _, winner_history = history(fetch, today)
+        winner_approved, winner_metrics = validate_winners(winner_history)
+        print(f'Winner model 1.8: approved={winner_approved}, metrics={winner_metrics}')
+        if winner_approved:
+            for old in proposals:
+                # Existing candidates provide team IDs and match time; winner
+                # model independently chooses the side (not the old edge).
+                m = next((g for g in candidates.values() if str(g['id']) == str(old['event_id'])), None)
+                if m is None:
+                    continue
+                decision = winner_pick(winner_history, m['home_id'], m['away_id'])
+                if not decision or decision['probability'] < MIN_CONFIDENCE:
+                    continue
+                chosen_home = decision['pick_home']
+                new = dict(old)
+                new['pick'] = m['home'] if chosen_home else m['away']
+                new['pick_id'] = m['home_id'] if chosen_home else m['away_id']
+                new['market_label'] = 'Победа ' + new['pick'] + ' (включая ОТ и буллиты)'
+                new['probability'] = decision['probability']
+                new['probability_method'] = decision['method']
+                new['selection_note'] = 'Проверенная на предыдущих матчах модель; исход не гарантирован'
+                selected.append(new)
+        print(f'Winner shadow: old_edge_candidates={len(proposals)}, eligible_to_publish={len(selected)}')
+    except Exception as exc:
+        print('WARNING: Winner validation unavailable; no new winner picks:', exc)
     new_count = 0
     for p in selected:
         # PRIME: publication means persisted in the app data feed.
@@ -524,7 +556,7 @@ def main():
         checkpoint_state(state)
         new_count += 1
     try:
-        previous, current = history(fetch, today)
+        previous, current = [], winner_history if winner_history else history(fetch, today)[1]
         approved, metrics = validate(previous, current)
         added = enrich(state['predictions'], previous, current, approved)
         # Select one highest estimated probability among historically validated
