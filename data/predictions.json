@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T07:08:01.641368+00:00",
+  "updated_at": "2026-10-15T07:26:04.153829+00:00",
   "predictions": [
     {
       "away": "Питтсбург Пингвинз",
@@ -17,7 +17,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Колорадо Эвеланш (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Калгари Флэймз",
@@ -35,7 +39,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Вегас Голден Найтс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Юта Маммот",
@@ -53,7 +61,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Эдмонтон Ойлерз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Виннипег Джетс",
@@ -71,7 +83,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Виннипег Джетс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Сент-Луис Блюз",
@@ -89,7 +105,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Миннесота Уайлд (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Филадельфия Флайерз",
@@ -107,7 +127,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Детройт Ред Уингз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Баффало Сейбрз",
@@ -125,7 +149,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Торонто Мейпл Лифс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Нью-Йорк Айлендерс",
@@ -143,7 +171,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Оттава Сенаторз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Сиэтл Кракен",
@@ -161,7 +193,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Тампа-Бэй Лайтнинг (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Ванкувер Кэнакс",
@@ -179,7 +215,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Флорида Пантерз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Нью-Йорк Рейнджерс",
@@ -197,7 +237,11 @@
       "publication_verified": true,
       "result": null,
       "sport": "NHL",
-      "status": "pending"
+      "status": "pending",
+      "market_type": "winner",
+      "market_label": "Победа Нью-Йорк Рейнджерс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Даллас Старз",
@@ -218,7 +262,11 @@
       "result_published_at": "2026-10-15T06:15:36.802003+00:00",
       "settled_at": "2026-10-15T06:15:36.802019+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Колорадо Эвеланш (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Монреаль Канадиенс",
@@ -239,7 +287,11 @@
       "result_published_at": "2026-10-15T06:15:35.589046+00:00",
       "settled_at": "2026-10-15T06:15:35.589056+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Вашингтон Кэпиталз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Калгари Флэймз",
@@ -261,7 +313,11 @@
       "result_published_at": "2026-10-14T06:37:10.637352+00:00",
       "settled_at": "2026-10-14T06:37:10.637368+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Анахайм Дакс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Торонто Мейпл Лифс",
@@ -283,7 +339,11 @@
       "result_published_at": "2026-10-14T06:37:06.852066+00:00",
       "settled_at": "2026-10-14T06:37:06.852083+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Юта Маммот (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Вегас Голден Найтс",
@@ -305,7 +365,11 @@
       "result_published_at": "2026-10-14T03:38:12.310812+00:00",
       "settled_at": "2026-10-14T03:38:12.310829+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Вегас Голден Найтс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Питтсбург Пингвинз",
@@ -327,7 +391,11 @@
       "result_published_at": "2026-10-14T03:38:07.846230+00:00",
       "settled_at": "2026-10-14T03:38:07.846246+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Питтсбург Пингвинз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Ванкувер Кэнакс",
@@ -349,7 +417,11 @@
       "result_published_at": "2026-10-14T03:38:04.213643+00:00",
       "settled_at": "2026-10-14T03:38:04.213661+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Нью-Йорк Айлендерс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Сент-Луис Блюз",
@@ -371,7 +443,11 @@
       "result_published_at": "2026-10-14T03:38:00.765237+00:00",
       "settled_at": "2026-10-14T03:38:00.765255+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Оттава Сенаторз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Сиэтл Кракен",
@@ -393,7 +469,11 @@
       "result_published_at": "2026-10-14T03:37:56.998805+00:00",
       "settled_at": "2026-10-14T03:37:56.998824+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Сиэтл Кракен (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Вашингтон Кэпиталз",
@@ -415,7 +495,11 @@
       "result_published_at": "2026-10-14T03:37:53.487448+00:00",
       "settled_at": "2026-10-14T03:37:53.487466+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Каролина Харрикейнз (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Баффало Сейбрз",
@@ -437,7 +521,11 @@
       "result_published_at": "2026-10-14T03:37:49.816924+00:00",
       "settled_at": "2026-10-14T03:37:49.816942+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Монреаль Канадиенс (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Hurricanes",
@@ -459,7 +547,11 @@
       "result_published_at": "2026-10-12T02:17:51.812918+00:00",
       "settled_at": "2026-10-12T02:17:51.812936+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Hurricanes (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Canucks",
@@ -481,7 +573,11 @@
       "result_published_at": "2026-10-12T00:43:22.632097+00:00",
       "settled_at": "2026-10-12T00:43:22.632116+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Rangers (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Hurricanes",
@@ -499,7 +595,11 @@
       "result": "win",
       "settled_at": "2026-10-11T03:31:34.284422+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Hurricanes (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     },
     {
       "away": "Flyers",
@@ -517,7 +617,11 @@
       "result": "win",
       "settled_at": "2026-10-10T21:28:30.898675+00:00",
       "sport": "NHL",
-      "status": "settled"
+      "status": "settled",
+      "market_type": "winner",
+      "market_label": "Победа Bruins (включая ОТ и буллиты)",
+      "probability": null,
+      "totals": []
     }
   ]
 }
