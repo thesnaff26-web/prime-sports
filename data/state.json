@@ -452,6 +452,7 @@
       "date": "2026-10-16T00:00:00Z",
       "edge": 0.266,
       "event_id": "2026020114",
+      "final_score": "4 : 3",
       "forecast_message_id": 45,
       "forecast_published_at": "2026-10-14T00:48:17.331539+00:00",
       "home": "Чикаго Блэкхокс",
@@ -460,9 +461,11 @@
       "pick": "Виннипег Джетс",
       "pick_id": "WPG",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
+      "result_published_at": "2026-10-16T02:51:28.425998+00:00",
+      "settled_at": "2026-10-16T02:51:28.426011+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020116": {
       "away": "Сент-Луис Блюз",
