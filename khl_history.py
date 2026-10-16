@@ -40,8 +40,13 @@ def completed(event, now=None):
             'home_score': home, 'away_score': away, 'sport': 'KHL'}
 
 
-def collect(today=None, lookback_days=13):
+def collect(today=None, lookback_days=None):
+    # Backfill the 2026/27 regular season beginning September 1, 2026.
+    # Subsequent hourly runs are idempotent by provider event ID.
     today = today or dt.datetime.now(UTC).date()
+    if lookback_days is None:
+        season_start = dt.date(today.year if today.month >= 8 else today.year - 1, 9, 1)
+        lookback_days = max(0, (today - season_start).days)
     HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
     if HISTORY_PATH.exists():
         payload = json.loads(HISTORY_PATH.read_text(encoding='utf-8'))

@@ -4,6 +4,7 @@ KHL picks are NOT published by this module. It only provides fixtures.
 """
 import datetime as dt
 import json
+import re
 import urllib.parse
 import urllib.request
 
@@ -93,6 +94,10 @@ def _score_value(event, team, side):
         if direct is not None:
             return direct
     scores = _value(event, 'score', 'scores', 'result')
+    if isinstance(scores, str):
+        match = re.fullmatch(r'\s*(\d+)\s*[:\-]\s*(\d+)\s*', scores)
+        if match:
+            return int(match.group(1) if side == 'home' else match.group(2))
     if isinstance(scores, dict):
         direct = _value(scores, side, f'team_{letter}', f'{side}_score')
         if isinstance(direct, dict):
@@ -102,7 +107,7 @@ def _score_value(event, team, side):
 
 
 def _status(event, start):
-    raw = _value(event, 'status', 'state', 'game_status', 'status_name', 'statusName')
+    raw = _value(event, 'game_state_key', 'status', 'state', 'game_status', 'status_name', 'statusName')
     if isinstance(raw, dict):
         raw = _value(raw, 'name', 'title', 'code', 'value', 'status')
     value = str(raw or '').strip().lower()
@@ -139,7 +144,7 @@ def normalize(raw):
         'home_rate': None, 'away_rate': None, 'status': state,
         'home_score': _score_value(event, home, 'home'),
         'away_score': _score_value(event, away, 'away'),
-        'raw_status': str(_value(event, 'status', 'state', 'game_status', 'status_name') or '')[:100],
+        'raw_status': str(_value(event, 'game_state_key', 'status', 'state', 'game_status', 'status_name') or '')[:100],
     }
 
 
@@ -155,7 +160,7 @@ def fetch_schedule(start_day, days=8):
     for page in range(1, 11):
         query = urllib.parse.urlencode({**params, 'page': page})
         request = urllib.request.Request(BASE + '?' + query, headers={
-            'Accept': 'application/json', 'User-Agent': 'PRIME-Sports/2.2',
+            'Accept': 'application/json', 'User-Agent': 'PRIME-Sports/2.5',
         })
         with urllib.request.urlopen(request, timeout=20) as response:
             raw = json.load(response)
