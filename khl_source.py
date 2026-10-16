@@ -82,6 +82,38 @@ def _teams(event):
     return home, away
 
 
+def _score_value(event, team, side):
+    # The provider can put scores on team objects or in a separate score object.
+    letter = 'a' if side == 'home' else 'b'
+    direct = _value(event, f'team_{letter}_score', f'{side}_score', f'{side}Score')
+    if direct is not None:
+        return direct
+    if isinstance(team, dict):
+        direct = _value(team, 'score', 'goals', 'points')
+        if direct is not None:
+            return direct
+    scores = _value(event, 'score', 'scores', 'result')
+    if isinstance(scores, dict):
+        direct = _value(scores, side, f'team_{letter}', f'{side}_score')
+        if isinstance(direct, dict):
+            return _value(direct, 'score', 'goals', 'total', 'value')
+        return direct
+    return None
+
+
+def _status(event, start):
+    raw = _value(event, 'status', 'state', 'game_status', 'status_name', 'statusName')
+    if isinstance(raw, dict):
+        raw = _value(raw, 'name', 'title', 'code', 'value', 'status')
+    value = str(raw or '').strip().lower()
+    if any(term in value for term in ('finish', 'final', 'ended', 'completed', 'finished', 'заверш', 'окончен')):
+        return 'final'
+    if any(term in value for term in ('live', 'progress', 'period', 'идет', 'идёт')):
+        return 'live'
+    # Unknown numerical codes are intentionally not mapped to 'final'.
+    return 'pre' if start > dt.datetime.now(UTC) else 'unknown'
+
+
 def normalize(raw):
     if not isinstance(raw, dict):
         return None
@@ -98,21 +130,16 @@ def normalize(raw):
         return None
     start_raw = _value(event, 'start_at', 'start_time', 'starts_at', 'date_time', 'datetime', 'date', 'startAt')
     start = _timestamp(start_raw)
-    status = str(_value(event, 'status', 'state', 'game_status') or '').lower()
-    if any(term in status for term in ('finish', 'final', 'ended', 'completed', 'finished')):
-        state = 'final'
-    elif any(term in status for term in ('live', 'progress', 'period')):
-        state = 'live'
-    else:
-        state = 'pre' if start > dt.datetime.now(UTC) else 'unknown'
+    state = _status(event, start)
     return {
         'id': str(event_id), 'sport': 'KHL', 'date': start.isoformat(),
         'home': home_name, 'away': away_name,
         'home_id': str(home.get('id')) if isinstance(home, dict) and home.get('id') is not None else None,
         'away_id': str(away.get('id')) if isinstance(away, dict) and away.get('id') is not None else None,
         'home_rate': None, 'away_rate': None, 'status': state,
-        'home_score': _value(event, 'team_a_score', 'home_score'),
-        'away_score': _value(event, 'team_b_score', 'away_score'),
+        'home_score': _score_value(event, home, 'home'),
+        'away_score': _score_value(event, away, 'away'),
+        'raw_status': str(_value(event, 'status', 'state', 'game_status', 'status_name') or '')[:100],
     }
 
 

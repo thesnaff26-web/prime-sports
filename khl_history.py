@@ -54,12 +54,21 @@ def collect(today=None, lookback_days=13):
     # Query end is exclusive. Never invent a result when the API omits one.
     discovered = 0
     added = 0
+    statuses = {}
+    score_samples = []
     for offset in range(lookback_days, -1, -7):
         start = today - dt.timedelta(days=offset)
         days = min(7, (today - start).days + 1)
         fixtures = fetch_schedule(start, days=days)
         discovered += len(fixtures)
         for event in fixtures:
+            status = str(event.get('status', 'missing'))
+            raw_status = str(event.get('raw_status', ''))
+            statuses[(status, raw_status)] = statuses.get((status, raw_status), 0) + 1
+            if len(score_samples) < 5 and event.get('status') == 'unknown':
+                score_samples.append({'date': event.get('date'), 'status': raw_status,
+                                      'home_score': event.get('home_score'),
+                                      'away_score': event.get('away_score')})
             game = completed(event)
             if game is None:
                 continue
@@ -70,6 +79,9 @@ def collect(today=None, lookback_days=13):
     payload['games'] = dict(sorted(games.items(), key=lambda pair: (pair[1]['date'], pair[0])))
     HISTORY_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'KHL history: API fixtures={discovered}, new final={added}, stored final={len(games)}')
+    print('KHL diagnostic status counts:', sorted(((str(k), v) for k, v in statuses.items()), key=lambda x: -x[1])[:20])
+    if score_samples:
+        print('KHL diagnostic unknown examples:', json.dumps(score_samples, ensure_ascii=False))
     return payload
 
 
