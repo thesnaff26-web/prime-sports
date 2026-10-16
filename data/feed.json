@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T15:23:52.724942+00:00",
+  "updated_at": "2026-10-16T19:35:00.946603+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -373,6 +373,34 @@
       "away": "Салават Юлаев",
       "home_id": "61",
       "away_id": "32",
+      "home_rate": null,
+      "away_rate": null,
+      "status": "pre",
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "id": "3000779",
+      "sport": "KHL",
+      "date": "2026-10-19T16:00:00+00:00",
+      "home": "Северсталь",
+      "away": "Торпедо",
+      "home_id": "42",
+      "away_id": "22",
+      "home_rate": null,
+      "away_rate": null,
+      "status": "pre",
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "id": "3000783",
+      "sport": "KHL",
+      "date": "2026-10-19T16:30:00+00:00",
+      "home": "ХК Сочи",
+      "away": "Драконы",
+      "home_id": "113",
+      "away_id": "315",
       "home_rate": null,
       "away_rate": null,
       "status": "pre",
