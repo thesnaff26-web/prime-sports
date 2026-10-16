@@ -431,6 +431,7 @@
       "date": "2026-10-15T23:00:00Z",
       "edge": 0.091,
       "event_id": "2026020113",
+      "final_score": "7 : 1",
       "forecast_message_id": 51,
       "forecast_published_at": "2026-10-14T00:48:42.094499+00:00",
       "home": "Нью-Джерси Девилз",
@@ -439,9 +440,11 @@
       "pick": "Нью-Йорк Рейнджерс",
       "pick_id": "NYR",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
+      "result_published_at": "2026-10-16T02:32:13.706640+00:00",
+      "settled_at": "2026-10-16T02:32:13.706656+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020114": {
       "away": "Виннипег Джетс",
