@@ -410,6 +410,7 @@
       "date": "2026-10-15T23:00:00Z",
       "edge": 0.181,
       "event_id": "2026020112",
+      "final_score": "3 : 2",
       "forecast_message_id": 47,
       "forecast_published_at": "2026-10-14T00:48:25.217262+00:00",
       "home": "Флорида Пантерз",
@@ -418,9 +419,11 @@
       "pick": "Флорида Пантерз",
       "pick_id": "FLA",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
+      "result_published_at": "2026-10-16T02:32:12.629476+00:00",
+      "settled_at": "2026-10-16T02:32:12.629493+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020113": {
       "away": "Нью-Йорк Рейнджерс",
