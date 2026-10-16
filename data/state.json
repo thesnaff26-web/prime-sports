@@ -389,6 +389,7 @@
       "date": "2026-10-15T23:00:00Z",
       "edge": 0.112,
       "event_id": "2026020111",
+      "final_score": "4 : 3",
       "forecast_message_id": 49,
       "forecast_published_at": "2026-10-14T00:48:33.724313+00:00",
       "home": "Тампа-Бэй Лайтнинг",
@@ -397,9 +398,11 @@
       "pick": "Тампа-Бэй Лайтнинг",
       "pick_id": "TBL",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
+      "result_published_at": "2026-10-16T02:32:11.539738+00:00",
+      "settled_at": "2026-10-16T02:32:11.539755+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020112": {
       "away": "Ванкувер Кэнакс",
