@@ -1,0 +1,8 @@
+PRIME 2.0 — NHL + KHL only
+
+Hourly GitHub Actions schedule; minimum 18h lead time for new NHL forecasts.
+NHL model retains its validation gates. KHL fixture adapter is present but publication is DISABLED until a verified source and independently validated KHL model are connected. No football code or UI.
+
+Upload files to repository preserving directories. Preserve your live data/state.json and data/predictions.json: do not overwrite them with older archive snapshots.
+
+GitHub Actions scheduled workflows may run late. This build is syntax-tested, not live-tested against external services.

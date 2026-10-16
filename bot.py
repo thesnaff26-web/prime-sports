@@ -82,8 +82,9 @@ def msk_time(value):
     except (ValueError, TypeError, AttributeError):
         return "время уточняется"
 STATE_FILE = pathlib.Path('data/state.json')
-SPORTS = ('NHL',)
-FORECAST_HOURS = 48
+SPORTS = ('NHL', 'KHL')
+MIN_LEAD_HOURS = 18
+FORECAST_HOURS = 168  # discover games one week ahead; never publish inside 18 hours
 HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; ICEEDGE/2.1)', 'Accept': 'application/json'}
 
 
@@ -151,7 +152,30 @@ def nba_events(date):
 
 
 def events_for(sport, date):
-    return nhl_events(date) if sport == 'NHL' else nba_events(date)
+    if sport == 'NHL':
+        return nhl_events(date)
+    if sport == 'KHL':
+        return khl_events(date)
+    return []
+
+
+def khl_events(date):
+    """KHL adapter intentionally fail-closed until a verified data source is wired.
+
+    Optional curated input data/khl_events.json: {"events": [normalized events]}.
+    This is fixture discovery only, never authorizes unvalidated predictions.
+    """
+    path = pathlib.Path('data/khl_events.json')
+    if not path.exists():
+        return []
+    try:
+        rows = json.loads(path.read_text(encoding='utf-8')).get('events', [])
+        return [x for x in rows if x.get('sport') == 'KHL' and
+                isinstance(x.get('date'), str) and
+                dt.datetime.fromisoformat(x['date'].replace('Z', '+00:00')).date() == date]
+    except (ValueError, KeyError, TypeError) as exc:
+        print('WARNING: invalid KHL data:', exc)
+        return []
 
 
 def send(text):
@@ -402,7 +426,8 @@ def main():
     pending = [p for p in state['predictions'].values() if p.get('status') == 'pending']
     # NHL scoreboard dates are league-local; fetch surrounding days to cover
     # the full next 48 hours and games near UTC midnight.
-    dates = {('NHL', today + dt.timedelta(days=offset)) for offset in (-1, 0, 1, 2, 3)}
+    dates = {('NHL', today + dt.timedelta(days=offset)) for offset in range(-1, 9)}
+    dates.update({(sport, today + dt.timedelta(days=offset)) for sport in ('KHL',) for offset in range(0, 8)})
     for p in pending:
         if p['sport'] == 'NHL':
             try:
@@ -459,6 +484,9 @@ def main():
             rejection_examples.append(f"  SKIP [{reason}] {name} (id={game.get('id', '?')}){suffix}")
 
     for sport in SPORTS:
+        if sport != 'NHL':
+            print(f'{sport}: fixture discovery active; publishing disabled until validated sport-specific model is connected')
+            continue
         # Deduplicate games appearing on overlapping scoreboard dates.
         seen = set()
         for g in (event for (league, _), games in fetched.items() if league == sport for event in games):
@@ -478,8 +506,11 @@ def main():
                 if start.tzinfo is None:
                     reject('invalid_start_time', g, 'missing timezone')
                     continue
-                if not now < start <= now + dt.timedelta(hours=FORECAST_HOURS):
-                    reject('outside_48h_window', g, f"start={start.isoformat()}")
+                if start < now + dt.timedelta(hours=MIN_LEAD_HOURS):
+                    reject('less_than_18h', g, f"start={start.isoformat()}")
+                    continue
+                if start > now + dt.timedelta(hours=FORECAST_HOURS):
+                    reject('outside_discovery_window', g, f"start={start.isoformat()}")
                     continue
             except (TypeError, ValueError, AttributeError):
                 reject('invalid_start_time', g, f"date={g.get('date')!r}")
@@ -504,7 +535,7 @@ def main():
                               'probability': None, 'totals': []})
     print('=== ICE EDGE selection diagnostics ===')
     print(f"Unique games reviewed: {diagnostics['unique_games']}")
-    for reason in ('not_upcoming', 'missing_team_form', 'outside_48h_window',
+    for reason in ('not_upcoming', 'missing_team_form', 'less_than_18h', 'outside_discovery_window',
                    'invalid_start_time', 'edge_below_threshold', 'already_in_state', 'eligible'):
         print(f'  {reason}: {diagnostics[reason]}')
     for item in rejection_examples:
@@ -548,6 +579,11 @@ def main():
         print('WARNING: Winner validation unavailable; no new winner picks:', exc)
     new_count = 0
     for p in selected:
+        # Recheck immediately before writing: never publish within 18h.
+        kickoff = dt.datetime.fromisoformat(p['date'].replace('Z', '+00:00'))
+        if kickoff - dt.datetime.now(UTC) < dt.timedelta(hours=MIN_LEAD_HOURS):
+            print('SKIP late publication:', p['id'])
+            continue
         # PRIME: publication means persisted in the app data feed.
         p['publication_verified'] = True
         p['forecast_published_at'] = dt.datetime.now(UTC).isoformat()
@@ -575,7 +611,7 @@ def main():
         print('WARNING: Totals model unavailable:', exc)
     save(state)
     export_prime(state)
-    print(f'Window: next {FORECAST_HOURS}h. Candidates: {len(proposals)}')
+    print(f'Window: {MIN_LEAD_HOURS}h to {FORECAST_HOURS}h ahead. Candidates: {len(proposals)}')
     print(f'Done. New: {new_count}. Settled: {settled_count}. Total: {len(state["predictions"])}')
     if errors:
         print('WARNING: Partial data source failures: ' + '; '.join(errors))
