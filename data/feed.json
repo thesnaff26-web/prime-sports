@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T11:03:59.890608+00:00",
+  "updated_at": "2026-10-16T15:23:52.724942+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -238,62 +238,6 @@
       "home_score": null,
       "away_score": null,
       "status": "pre"
-    },
-    {
-      "id": "3000727",
-      "sport": "KHL",
-      "date": "2026-10-16T13:30:00+00:00",
-      "home": "Авангард",
-      "away": "Автомобилист",
-      "home_id": "10",
-      "away_id": "56",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
-    },
-    {
-      "id": "3000735",
-      "sport": "KHL",
-      "date": "2026-10-16T16:00:00+00:00",
-      "home": "Нефтехимик",
-      "away": "Трактор",
-      "home_id": "36",
-      "away_id": "28",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
-    },
-    {
-      "id": "3001019",
-      "sport": "KHL",
-      "date": "2026-10-16T16:00:00+00:00",
-      "home": "Торпедо",
-      "away": "Динамо М",
-      "home_id": "22",
-      "away_id": "8",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
-    },
-    {
-      "id": "3000731",
-      "sport": "KHL",
-      "date": "2026-10-16T16:30:00+00:00",
-      "home": "Драконы",
-      "away": "Ак Барс",
-      "home_id": "315",
-      "away_id": "40",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
     },
     {
       "id": "3000751",
