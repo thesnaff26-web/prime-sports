@@ -326,6 +326,7 @@
       "date": "2026-10-15T23:00:00Z",
       "edge": 0.095,
       "event_id": "2026020108",
+      "final_score": "4 : 5",
       "forecast_message_id": 50,
       "forecast_published_at": "2026-10-14T00:48:37.997306+00:00",
       "home": "Торонто Мейпл Лифс",
@@ -334,9 +335,11 @@
       "pick": "Торонто Мейпл Лифс",
       "pick_id": "TOR",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
+      "result_published_at": "2026-10-16T02:32:08.349125+00:00",
+      "settled_at": "2026-10-16T02:32:08.349137+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020109": {
       "away": "Нью-Йорк Айлендерс",
