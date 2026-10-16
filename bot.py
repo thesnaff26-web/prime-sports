@@ -4,6 +4,7 @@ import datetime as dt
 from collections import Counter
 from totals_model import history, validate, enrich
 from winner_model import validate as validate_winners, pick as winner_pick, MIN_CONFIDENCE
+from khl_source import fetch_schedule as fetch_khl_schedule
 import json
 import os
 import pathlib
@@ -159,23 +160,18 @@ def events_for(sport, date):
     return []
 
 
-def khl_events(date):
-    """KHL adapter intentionally fail-closed until a verified data source is wired.
+_khl_schedule_cache = None
 
-    Optional curated input data/khl_events.json: {"events": [normalized events]}.
-    This is fixture discovery only, never authorizes unvalidated predictions.
-    """
-    path = pathlib.Path('data/khl_events.json')
-    if not path.exists():
-        return []
-    try:
-        rows = json.loads(path.read_text(encoding='utf-8')).get('events', [])
-        return [x for x in rows if x.get('sport') == 'KHL' and
-                isinstance(x.get('date'), str) and
-                dt.datetime.fromisoformat(x['date'].replace('Z', '+00:00')).date() == date]
-    except (ValueError, KeyError, TypeError) as exc:
-        print('WARNING: invalid KHL data:', exc)
-        return []
+def khl_events(date):
+    """Fetch KHL fixtures once per bot run; never fabricate absent events."""
+    global _khl_schedule_cache
+    if _khl_schedule_cache is None:
+        # An API failure is logged as an ERROR by main(), not a misleading 0 games.
+        _khl_schedule_cache = fetch_khl_schedule(dt.datetime.now(UTC).date(), days=9)
+        print(f'KHL API: received {len(_khl_schedule_cache)} normalized upcoming fixtures')
+        if not _khl_schedule_cache:
+            print('WARNING: KHL API returned zero fixtures; check API response and season')
+    return [x for x in _khl_schedule_cache if dt.datetime.fromisoformat(x['date']).date() == date]
 
 
 def send(text):
@@ -424,8 +420,7 @@ def main():
     errors = []
     fetched = {}
     pending = [p for p in state['predictions'].values() if p.get('status') == 'pending']
-    # NHL scoreboard dates are league-local; fetch surrounding days to cover
-    # the full next 48 hours and games near UTC midnight.
+    # NHL scoreboard dates are league-local; fetch surrounding days.
     dates = {('NHL', today + dt.timedelta(days=offset)) for offset in range(-1, 9)}
     dates.update({(sport, today + dt.timedelta(days=offset)) for sport in ('KHL',) for offset in range(0, 8)})
     for p in pending:
