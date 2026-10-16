@@ -1,52 +1,58 @@
-
-name: PRIME - Auto forecasts
-
+name: PRIME — update and publish
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 * * * *'
-
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
 permissions:
   contents: write
-
+  pages: write
+  id-token: write
 concurrency:
-  group: prime-forecasts
+  group: prime-pages
   cancel-in-progress: false
-
 jobs:
-  forecasts:
+  update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install "Pillow>=10,<13" "cairosvg>=2.7,<3"
-
-      - name: Check Python syntax
-        run: python -m py_compile bot.py winner_model.py totals_model.py khl_source.py khl_history.py
-
-      - name: Collect KHL completed games
-        run: python khl_history.py
-
-      - name: Run PRIME bot
+          python-version: '3.12'
+      - name: Test model
+        run: python -m unittest discover -s tests
+      - name: Update forecasts
+        id: bot
+        continue-on-error: true
         run: python bot.py
-
-      - name: Save forecasts
+      - name: Save data
+        if: always()
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/predictions.json data/khl_history.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data
           if ! git diff --cached --quiet; then
-            git commit -m "Update PRIME forecasts"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            git commit -m 'Update PRIME data'
+            git push
           fi
+      - name: Prepare public site
+        run: |
+          mkdir -p _site/data
+          cp index.html app.js sw.js manifest.webmanifest icon.svg _site/
+          cp data/feed.json _site/data/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deploy
+      - name: Report source failure
+        if: steps.bot.outcome == 'failure'
+        run: |
+          echo 'One or more sources failed. Published feed contains explicit errors.'
+          exit 1
