@@ -347,6 +347,7 @@
       "date": "2026-10-15T23:00:00Z",
       "edge": 0.301,
       "event_id": "2026020109",
+      "final_score": "2 : 1",
       "forecast_message_id": 44,
       "forecast_published_at": "2026-10-14T00:48:13.292422+00:00",
       "home": "Оттава Сенаторз",
@@ -355,9 +356,11 @@
       "pick": "Оттава Сенаторз",
       "pick_id": "OTT",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
+      "result_published_at": "2026-10-16T02:32:09.421854+00:00",
+      "settled_at": "2026-10-16T02:32:09.421870+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020110": {
       "away": "Филадельфия Флайерз",
