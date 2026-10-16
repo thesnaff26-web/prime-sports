@@ -473,6 +473,7 @@
       "date": "2026-10-16T00:00:00Z",
       "edge": 0.195,
       "event_id": "2026020116",
+      "final_score": "5 : 4",
       "forecast_message_id": 46,
       "forecast_published_at": "2026-10-14T00:48:21.350933+00:00",
       "home": "Миннесота Уайлд",
@@ -481,9 +482,11 @@
       "pick": "Миннесота Уайлд",
       "pick_id": "MIN",
       "publication_verified": true,
-      "result": null,
+      "result": "win",
+      "result_published_at": "2026-10-16T02:51:29.962256+00:00",
+      "settled_at": "2026-10-16T02:51:29.962275+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020117": {
       "away": "Юта Маммот",
