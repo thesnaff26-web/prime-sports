@@ -494,6 +494,7 @@
       "date": "2026-10-16T01:00:00Z",
       "edge": 0.167,
       "event_id": "2026020117",
+      "final_score": "2 : 4",
       "forecast_message_id": 61,
       "forecast_published_at": "2026-10-14T03:38:21.963017+00:00",
       "home": "Эдмонтон Ойлерз",
@@ -502,9 +503,11 @@
       "pick": "Эдмонтон Ойлерз",
       "pick_id": "EDM",
       "publication_verified": true,
-      "result": null,
+      "result": "loss",
+      "result_published_at": "2026-10-16T05:52:27.489432+00:00",
+      "settled_at": "2026-10-16T05:52:27.489446+00:00",
       "sport": "NHL",
-      "status": "pending"
+      "status": "settled"
     },
     "NHL:2026020118": {
       "away": "Калгари Флэймз",
