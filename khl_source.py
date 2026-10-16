@@ -99,7 +99,7 @@ def normalize(raw):
     start_raw = _value(event, 'start_at', 'start_time', 'starts_at', 'date_time', 'datetime', 'date', 'startAt')
     start = _timestamp(start_raw)
     status = str(_value(event, 'status', 'state', 'game_status') or '').lower()
-    if any(term in status for term in ('finish', 'final', 'ended', 'completed')):
+    if any(term in status for term in ('finish', 'final', 'ended', 'completed', 'finished')):
         state = 'final'
     elif any(term in status for term in ('live', 'progress', 'period')):
         state = 'live'
