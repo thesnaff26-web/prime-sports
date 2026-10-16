@@ -1,0 +1,58 @@
+name: PRIME — update and publish
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: prime-pages
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test model
+        run: python -m unittest discover -s tests
+      - name: Update forecasts
+        id: bot
+        continue-on-error: true
+        run: python bot.py
+      - name: Save data
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update PRIME data'
+            git push
+          fi
+      - name: Prepare public site
+        run: |
+          mkdir -p _site/data
+          cp index.html app.js sw.js manifest.webmanifest icon.svg _site/
+          cp data/feed.json _site/data/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deploy
+      - name: Report source failure
+        if: steps.bot.outcome == 'failure'
+        run: |
+          echo 'One or more sources failed. Published feed contains explicit errors.'
+          exit 1
