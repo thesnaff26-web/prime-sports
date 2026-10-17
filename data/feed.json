@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T07:00:32.726873+00:00",
+  "updated_at": "2026-10-17T11:39:32.638790+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -8,7 +8,7 @@
       "accuracy": null,
       "lower95": 0,
       "approved": false,
-      "games": 119,
+      "games": 120,
       "status": "learning"
     },
     "KHL": {
@@ -262,20 +262,6 @@
       "home_score": null,
       "away_score": null,
       "status": "pre"
-    },
-    {
-      "id": "3000747",
-      "sport": "KHL",
-      "date": "2026-10-17T10:30:00+00:00",
-      "home": "Сибирь",
-      "away": "Барыс",
-      "home_id": "24",
-      "away_id": "46",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
     },
     {
       "id": "3000743",
