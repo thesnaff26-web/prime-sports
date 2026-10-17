@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T11:39:32.638790+00:00",
+  "updated_at": "2026-10-17T15:40:28.733420+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -23,18 +23,6 @@
   },
   "predictions": [],
   "fixtures": [
-    {
-      "id": "2026020121",
-      "sport": "NHL",
-      "date": "2026-10-17T17:00:00+00:00",
-      "home": "Capitals",
-      "away": "Devils",
-      "home_id": "WSH",
-      "away_id": "NJD",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
     {
       "id": "2026020122",
       "sport": "NHL",
@@ -262,20 +250,6 @@
       "home_score": null,
       "away_score": null,
       "status": "pre"
-    },
-    {
-      "id": "3000743",
-      "sport": "KHL",
-      "date": "2026-10-17T14:00:00+00:00",
-      "home": "ХК Сочи",
-      "away": "Локомотив",
-      "home_id": "113",
-      "away_id": "26",
-      "home_rate": null,
-      "away_rate": null,
-      "status": "pre",
-      "home_score": null,
-      "away_score": null
     },
     {
       "id": "3000755",
