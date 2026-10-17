@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16T22:53:06.390594+00:00",
+  "updated_at": "2026-10-17T01:21:02.707778+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -23,30 +23,6 @@
   },
   "predictions": [],
   "fixtures": [
-    {
-      "id": "2026020119",
-      "sport": "NHL",
-      "date": "2026-10-17T01:00:00+00:00",
-      "home": "Avalanche",
-      "away": "Penguins",
-      "home_id": "COL",
-      "away_id": "PIT",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020120",
-      "sport": "NHL",
-      "date": "2026-10-17T02:00:00+00:00",
-      "home": "Ducks",
-      "away": "Bruins",
-      "home_id": "ANA",
-      "away_id": "BOS",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
     {
       "id": "2026020121",
       "sport": "NHL",
@@ -235,6 +211,54 @@
       "away": "Hurricanes",
       "home_id": "CGY",
       "away_id": "CAR",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020137",
+      "sport": "NHL",
+      "date": "2026-10-19T23:00:00+00:00",
+      "home": "Rangers",
+      "away": "Ducks",
+      "home_id": "NYR",
+      "away_id": "ANA",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020138",
+      "sport": "NHL",
+      "date": "2026-10-19T23:00:00+00:00",
+      "home": "Flyers",
+      "away": "Avalanche",
+      "home_id": "PHI",
+      "away_id": "COL",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020139",
+      "sport": "NHL",
+      "date": "2026-10-19T23:30:00+00:00",
+      "home": "Maple Leafs",
+      "away": "Sharks",
+      "home_id": "TOR",
+      "away_id": "SJS",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020140",
+      "sport": "NHL",
+      "date": "2026-10-20T01:00:00+00:00",
+      "home": "Mammoth",
+      "away": "Penguins",
+      "home_id": "UTA",
+      "away_id": "PIT",
       "home_score": null,
       "away_score": null,
       "status": "pre"
