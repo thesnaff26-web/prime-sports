@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T18:33:05.065722+00:00",
+  "updated_at": "2026-10-17T21:30:15.721867+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -23,90 +23,6 @@
   },
   "predictions": [],
   "fixtures": [
-    {
-      "id": "2026020124",
-      "sport": "NHL",
-      "date": "2026-10-17T22:00:00+00:00",
-      "home": "Panthers",
-      "away": "Kraken",
-      "home_id": "FLA",
-      "away_id": "SEA",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020125",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Maple Leafs",
-      "away": "Islanders",
-      "home_id": "TOR",
-      "away_id": "NYI",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020126",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Canadiens",
-      "away": "Sabres",
-      "home_id": "MTL",
-      "away_id": "BUF",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020127",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Red Wings",
-      "away": "Sharks",
-      "home_id": "DET",
-      "away_id": "SJS",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020128",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Flyers",
-      "away": "Senators",
-      "home_id": "PHI",
-      "away_id": "OTT",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020129",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Blue Jackets",
-      "away": "Rangers",
-      "home_id": "CBJ",
-      "away_id": "NYR",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020130",
-      "sport": "NHL",
-      "date": "2026-10-17T23:00:00+00:00",
-      "home": "Blackhawks",
-      "away": "Stars",
-      "home_id": "CHI",
-      "away_id": "DAL",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
     {
       "id": "2026020131",
       "sport": "NHL",

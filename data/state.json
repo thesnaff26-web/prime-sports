@@ -1439,6 +1439,18 @@
       "home_score": 2,
       "away_score": 4,
       "status": "final"
+    },
+    "NHL:2026020121": {
+      "id": "2026020121",
+      "sport": "NHL",
+      "date": "2026-10-17T17:00:00+00:00",
+      "home": "Capitals",
+      "away": "Devils",
+      "home_id": "WSH",
+      "away_id": "NJD",
+      "home_score": 4,
+      "away_score": 2,
+      "status": "final"
     }
   },
   "predictions": {},
