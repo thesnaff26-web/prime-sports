@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T15:40:28.733420+00:00",
+  "updated_at": "2026-10-17T18:33:05.065722+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -23,30 +23,6 @@
   },
   "predictions": [],
   "fixtures": [
-    {
-      "id": "2026020122",
-      "sport": "NHL",
-      "date": "2026-10-17T19:30:00+00:00",
-      "home": "Jets",
-      "away": "Hurricanes",
-      "home_id": "WPG",
-      "away_id": "CAR",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020123",
-      "sport": "NHL",
-      "date": "2026-10-17T20:00:00+00:00",
-      "home": "Lightning",
-      "away": "Canucks",
-      "home_id": "TBL",
-      "away_id": "VAN",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
     {
       "id": "2026020124",
       "sport": "NHL",
@@ -371,6 +347,48 @@
       "away": "Драконы",
       "home_id": "113",
       "away_id": "315",
+      "home_rate": null,
+      "away_rate": null,
+      "status": "pre",
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "id": "3000791",
+      "sport": "KHL",
+      "date": "2026-10-20T16:00:00+00:00",
+      "home": "Локомотив",
+      "away": "Нефтехимик",
+      "home_id": "26",
+      "away_id": "36",
+      "home_rate": null,
+      "away_rate": null,
+      "status": "pre",
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "id": "3000795",
+      "sport": "KHL",
+      "date": "2026-10-20T16:30:00+00:00",
+      "home": "Динамо М",
+      "away": "Сибирь",
+      "home_id": "8",
+      "away_id": "24",
+      "home_rate": null,
+      "away_rate": null,
+      "status": "pre",
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "id": "3000799",
+      "sport": "KHL",
+      "date": "2026-10-20T16:30:00+00:00",
+      "home": "СКА",
+      "away": "Автомобилист",
+      "home_id": "44",
+      "away_id": "56",
       "home_rate": null,
       "away_rate": null,
       "status": "pre",
