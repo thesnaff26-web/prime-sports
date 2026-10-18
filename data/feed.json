@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T21:30:15.721867+00:00",
+  "updated_at": "2026-10-18T00:04:56.502146+00:00",
   "model": "elo-v1",
   "leagues": {
     "NHL": {
@@ -8,7 +8,7 @@
       "accuracy": null,
       "lower95": 0,
       "approved": false,
-      "games": 120,
+      "games": 121,
       "status": "learning"
     },
     "KHL": {
@@ -23,54 +23,6 @@
   },
   "predictions": [],
   "fixtures": [
-    {
-      "id": "2026020131",
-      "sport": "NHL",
-      "date": "2026-10-18T00:00:00+00:00",
-      "home": "Predators",
-      "away": "Blues",
-      "home_id": "NSH",
-      "away_id": "STL",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020132",
-      "sport": "NHL",
-      "date": "2026-10-18T01:00:00+00:00",
-      "home": "Kings",
-      "away": "Bruins",
-      "home_id": "LAK",
-      "away_id": "BOS",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020133",
-      "sport": "NHL",
-      "date": "2026-10-18T02:00:00+00:00",
-      "home": "Mammoth",
-      "away": "Oilers",
-      "home_id": "UTA",
-      "away_id": "EDM",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
-    {
-      "id": "2026020134",
-      "sport": "NHL",
-      "date": "2026-10-18T02:00:00+00:00",
-      "home": "Golden Knights",
-      "away": "Penguins",
-      "home_id": "VGK",
-      "away_id": "PIT",
-      "home_score": null,
-      "away_score": null,
-      "status": "pre"
-    },
     {
       "id": "2026020135",
       "sport": "NHL",
@@ -139,6 +91,90 @@
       "away": "Penguins",
       "home_id": "UTA",
       "away_id": "PIT",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020141",
+      "sport": "NHL",
+      "date": "2026-10-20T23:00:00+00:00",
+      "home": "Canadiens",
+      "away": "Sharks",
+      "home_id": "MTL",
+      "away_id": "SJS",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020142",
+      "sport": "NHL",
+      "date": "2026-10-20T23:00:00+00:00",
+      "home": "Devils",
+      "away": "Avalanche",
+      "home_id": "NJD",
+      "away_id": "COL",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020143",
+      "sport": "NHL",
+      "date": "2026-10-20T23:00:00+00:00",
+      "home": "Islanders",
+      "away": "Ducks",
+      "home_id": "NYI",
+      "away_id": "ANA",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020144",
+      "sport": "NHL",
+      "date": "2026-10-20T23:00:00+00:00",
+      "home": "Capitals",
+      "away": "Kings",
+      "home_id": "WSH",
+      "away_id": "LAK",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020145",
+      "sport": "NHL",
+      "date": "2026-10-20T23:00:00+00:00",
+      "home": "Blue Jackets",
+      "away": "Maple Leafs",
+      "home_id": "CBJ",
+      "away_id": "TOR",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020146",
+      "sport": "NHL",
+      "date": "2026-10-21T00:00:00+00:00",
+      "home": "Blues",
+      "away": "Jets",
+      "home_id": "STL",
+      "away_id": "WPG",
+      "home_score": null,
+      "away_score": null,
+      "status": "pre"
+    },
+    {
+      "id": "2026020147",
+      "sport": "NHL",
+      "date": "2026-10-21T00:00:00+00:00",
+      "home": "Stars",
+      "away": "Bruins",
+      "home_id": "DAL",
+      "away_id": "BOS",
       "home_score": null,
       "away_score": null,
       "status": "pre"

@@ -1451,11 +1451,35 @@
       "home_score": 4,
       "away_score": 2,
       "status": "final"
+    },
+    "NHL:2026020122": {
+      "id": "2026020122",
+      "sport": "NHL",
+      "date": "2026-10-17T19:30:00+00:00",
+      "home": "Jets",
+      "away": "Hurricanes",
+      "home_id": "WPG",
+      "away_id": "CAR",
+      "home_score": 2,
+      "away_score": 3,
+      "status": "final"
+    },
+    "NHL:2026020123": {
+      "id": "2026020123",
+      "sport": "NHL",
+      "date": "2026-10-17T20:00:00+00:00",
+      "home": "Lightning",
+      "away": "Canucks",
+      "home_id": "TBL",
+      "away_id": "VAN",
+      "home_score": 4,
+      "away_score": 2,
+      "status": "final"
     }
   },
   "predictions": {},
   "cursors": {
-    "NHL": "2026-10-17",
-    "KHL": "2026-10-17"
+    "NHL": "2026-10-18",
+    "KHL": "2026-10-18"
   }
 }
